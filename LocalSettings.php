@@ -30,7 +30,7 @@ $wgMetaNamespace = "Transmipedia";
 $wgScriptPath = "";
 
 ## The protocol and server name to use in fully-qualified URLs
-$wgServer = "https://127.0.0.1";
+$wgServer = "https://8080-dot-4026032-dot-devshell.appspot.com";
 
 ## The URL path to static resources (images, scripts, etc.)
 $wgResourceBasePath = $wgScriptPath;
