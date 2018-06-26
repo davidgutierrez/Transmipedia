@@ -36,7 +36,7 @@ $wgMetaNamespace = "Project";
 # This allows use of the /wiki/* path
 ## https://www.mediawiki.org/wiki/Manual:Short_URL
 $wgScriptPath = "/w";        // this should already have been configured this way
-$wgLogo = $wgScriptPath . "/var/www/html/resources/assets/TransMilenio.png";
+$wgLogo = $wgScriptPath . "/resources/assets/TransMilenio.png";
 $wgArticlePath = "/wiki/$1";
 
 #Set Secret
