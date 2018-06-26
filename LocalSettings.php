@@ -68,6 +68,7 @@ require_once "$IP/extensions/Wikibase/client/ExampleSettings.php";
 wfLoadExtension( 'ParserFunctions' );
 wfLoadExtension( 'ImageMap' );
 wfLoadExtension( 'PdfHandler' );
+wfLoadExtension( 'WikiEditor' );
 wfLoadExtension( 'Cite' );
 wfLoadExtension( 'Scribunto' );
 $wgScribuntoDefaultEngine = 'luastandalone';
