@@ -43,6 +43,7 @@ test2
 gcloud config set compute/zone us-central1-a
 docker run --name transmipedia -p 8080:80 -d mediawiki
 docker cp LocalSettings.php transmipedia:/var/www/html/LocalSettings.php
+tar -xzf extensions/Scribunto-REL1_31-106fbf4.tar.gz -C /extensions
 docker cp extensions/. transmipedia:/var/www/html/extensions/
 
 docker exec some-mediawiki
