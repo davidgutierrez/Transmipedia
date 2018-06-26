@@ -1,0 +1,63 @@
+# MediaWiki with MariaDB
+#
+# Access via "http://localhost:8080"
+#   (or "http://$(docker-machine ip):8080" if using docker-machine)
+#  docker swarm init
+#  docker stack deploy
+#  docker stack deploy -c stack.yml mediawiki
+#  nohup docker-compose -f stack.yml up > my.log 2>&1 &
+# docker cp extensions/. docker_mediawiki_1:/var/www/html/extensions/
+# docker cp --chown=docker:docker LocalSettings.php docker_mediawiki_1:/var/www/html/LocalSettings.php
+#
+# docker pull wikibase/wikibase 
+# Posible errors
+# error:    failed to register layer: Untar error on re-exec cmd: fork/exec /proc/self/exe: stale NFS file handle google console
+# solution: service docker restart
+#
+# error: denied: requested access to the resource is denied
+# solution: export PROJECT_ID="$(gcloud config get-value project -q)"
+#
+# tag wikibase/wikibase gcr.io/${PROJECT_ID}/wikibase
+# kubectl run wiki-web --image=gcr.io/${PROJECT_ID}/wikibase:v1 --port 8080
+# docker run --rm -p 8080:8080 -e MW_ADMIN_NAME="admin" -e MW_ADMIN_PASS="password" -e MW_WG_SECRET_KEY="psecretkey" -e DB_SERVER="35.193.128.232:3306" -e DB_USER="wikiuser" -e DB_PASS="1q2w3e4r5t6y7u8i9o" -e DB_NAME="my_wiki" gcr.io/${PROJECT_ID}/wikibase
+# kubectl run wiki-web --image=gcr.io/${PROJECT_ID}/wikibase --port 8080 --env="MW_ADMIN_NAME=admin" --env="MW_ADMIN_PASS=password" --env="MW_WG_SECRET_KEY=psecretkey" --env="DB_SERVER=35.193.128.232:3306" --env="DB_USER=wikiuser" --env="DB_PASS=1q2w3e4r5t6y7u8i9o" --env="DB_NAME=my_wiki"
+# kubectl expose deployment wiki-web --type=LoadBalancer --port 80 --target-port 8080
+version: '2'
+services:
+  mediawiki:
+    image: wikibase/wikibase 
+    # mediawiki  
+    restart: always
+    ports:
+      - 8080:80
+    links:
+      - database
+    volumes:
+      - /var/www/html/images
+      # After initial setup, download LocalSettings.php to the same directory as
+      # this yaml and uncomment the following line and use compose to restart
+      # the mediawiki service
+      #- ./LocalSettings.php:/var/www/html/LocalSettings.php:rw
+      - ./TransMilenio.png:/var/www/html/resources/assets/TransMilenio.png
+      #Para instalar Scribunto
+      # docker cp Scribunto/. docker_mediawiki_1:/var/www/html/extensions/Scribunto/
+      # docker cp Wikibase/. docker_mediawiki_1:/var/www/html/extensions/Wikibase/
+    environment:
+      MW_ADMIN_NAME: admin
+      MW_ADMIN_PASS: password
+      MW_WG_SECRET_KEY: secretkey
+      DB_SERVER: database:3306
+      DB_USER: wikiuser
+      DB_PASS: example
+      DB_NAME: my_wiki
+  database:
+    image: mariadb
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      # @see https://phabricator.wikimedia.org/source/mediawiki/browse/master/includes/DefaultSettings.php
+      MYSQL_DATABASE: my_wiki
+      MYSQL_USER: wikiuser
+      MYSQL_PASSWORD: example
+      MYSQL_ROOT_PASSWORD: superSecretPassword
