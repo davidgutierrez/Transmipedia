@@ -1,5 +1,11 @@
 # Transmipedia
+docker-compose -f stack.yml
 
+tar -xzf extensions/Scribunto-REL1_30-4e3a20b.tar.gz -C extensions/
+
+docker cp extensions/. transmipedia_mediawiki_1:/var/www/html/extensions/
+
+docker cp LocalSettings.php transmipedia_mediawiki_1:/var/www/html/LocalSettings.php
 # MediaWiki with MariaDB
 #
 # Access via "http://localhost:8080"
