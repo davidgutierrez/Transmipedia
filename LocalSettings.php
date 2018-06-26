@@ -69,6 +69,7 @@ wfLoadExtension( 'ParserFunctions' );
 wfLoadExtension( 'ImageMap' );
 wfLoadExtension( 'PdfHandler' );
 wfLoadExtension( 'WikiEditor' );
+$wgHiddenPrefs[] = 'usebetatoolbar';
 wfLoadExtension( 'Cite' );
 wfLoadExtension( 'Scribunto' );
 $wgScribuntoDefaultEngine = 'luastandalone';
