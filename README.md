@@ -1,5 +1,5 @@
 # Transmipedia
-docker-compose -f stack.yml
+docker-compose -f stack.yml up
 
 tar -xzf extensions/Scribunto-REL1_30-4e3a20b.tar.gz -C extensions/
 
