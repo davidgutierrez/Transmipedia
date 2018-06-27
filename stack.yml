@@ -37,7 +37,7 @@ services:
       # After initial setup, download LocalSettings.php to the same directory as
       # this yaml and uncomment the following line and use compose to restart
       # the mediawiki service
-      #- ./LocalSettings.php:/var/www/html/LocalSettings.php:rw
+      - ./LocalSettings.php:/var/www/html/LocalSettings.php:rw
       - ./TransMilenio.png:/var/www/html/resources/assets/TransMilenio.png
       #Para instalar Scribunto
       # docker cp Scribunto/. docker_mediawiki_1:/var/www/html/extensions/Scribunto/
