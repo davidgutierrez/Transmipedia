@@ -30,7 +30,7 @@ $wgDebugLogGroups = array(
 # TODO pass in the rest of this with env vars?
 $wgShellLocale = "C.UTF-8";
 $wgLanguageCode = "es";
-$wgSitename = "wikibase-docker";
+$wgSitename = "Transmipedia";
 $wgMetaNamespace = "Project";
 # Configured web paths & short URLs
 # This allows use of the /wiki/* path
