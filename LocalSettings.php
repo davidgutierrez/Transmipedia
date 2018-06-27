@@ -73,3 +73,7 @@ $wgHiddenPrefs[] = 'usebetatoolbar';
 wfLoadExtension( 'Cite' );
 wfLoadExtension( 'Scribunto' );
 $wgScribuntoDefaultEngine = 'luastandalone';
+
+$wgShowExceptionDetails = true;
+$wgShowDBErrorBacktrace = true;
+$wgShowSQLErrors = true;
