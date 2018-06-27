@@ -77,3 +77,5 @@ $wgScribuntoDefaultEngine = 'luastandalone';
 $wgShowExceptionDetails = true;
 $wgShowDBErrorBacktrace = true;
 $wgShowSQLErrors = true;
+
+$wgEnableUploads = true; # Enable uploads
