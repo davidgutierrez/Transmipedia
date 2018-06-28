@@ -1,12 +1,27 @@
 
 Enable Kubernete
  https://console.cloud.google.com/apis/api/container.googleapis.com/overview?project=wikipedia-208621 
- 
+
+git clone https://github.com/davidgutierrez/Transmipedia.git
+
+cd Transmipedia
+
 gcloud container clusters create transmipedia-cluster --num-nodes=3
 
 gcloud container clusters get-credentials transmipedia-cluster
 
 gcloud compute disks create --size 200GB transmipedia-disk
+
+kubectl create secret generic mysql --from-literal=password=1q2w3e4r5t6y7u8i9o
+
+docker pull wikibase/wikibase
+
+kubectl create -f transmipedia.yaml
+
+kubectl get pod -l app=transmipedia
+
+kubectl describe pods
+
 # Transmipedia
 docker-compose -f stack.yml up
 
