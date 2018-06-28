@@ -1,0 +1,38 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: transmipedia
+  labels:
+    app: transmipedia
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: transmipedia
+  template:
+    metadata:
+      labels:
+        app: transmipedia
+    spec:
+      containers:
+        - image: wikibase/wikibase
+          name: transmipedia
+          env:
+          - name: DB_SERVER
+            value: mysql:3306
+          - name: DB_PASS
+            valueFrom:
+              secretKeyRef:
+                name: mysql
+                key: password
+          ports:
+            - containerPort: 80
+              name: transmipedia
+          volumeMounts:
+            - name: transmipedia-persistent-storage
+              mountPath: /var/www/html
+      volumes:
+        - name: transmipedia-persistent-storage
+          gcePersistentDisk:
+            pdName: transmipedia-disk
+            fsType: ext4
