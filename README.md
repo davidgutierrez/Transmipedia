@@ -1,3 +1,12 @@
+
+Enable Kubernete
+ https://console.cloud.google.com/apis/api/container.googleapis.com/overview?project=wikipedia-208621 
+ 
+gcloud container clusters create transmipedia-cluster --num-nodes=3
+
+gcloud container clusters get-credentials transmipedia-cluster
+
+gcloud compute disks create --size 200GB transmipedia-disk
 # Transmipedia
 docker-compose -f stack.yml up
 
