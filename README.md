@@ -32,11 +32,16 @@ docker cp extensions/. transmipedia_mediawiki_1:/var/www/html/extensions/
 docker cp LocalSettings.php transmipedia_mediawiki_1:/var/www/html/LocalSettings.php
 
 docker exec transmipedia_mediawiki_1 php /var/www/html/maintenance/update.php
-# Clena Docker
+# Clean Docker
 docker rm -f $(docker ps -a -q)
 
 docker volume rm $(docker volume ls -q)
+
 # Access via "http://localhost:8080"
+
+kubectl run transmipedia-web --image=wikibase/wikibase --port 8080
+
+docker run --env-file ./env.list --rm -p 8080:8080 wikibase/wikibase
 #   (or "http://$(docker-machine ip):8080" if using docker-machine)
 #  docker swarm init
 #  docker stack deploy
