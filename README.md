@@ -16,7 +16,7 @@ sudo mv mediawiki-*/* /var/lib/mediawiki
 
 mysql -u root -p
 
-CREATE USER 'transmiwikiuser'@'localhost' IDENTIFIED BY 'Tr4nsm1w1k1p4ss';
+CREATE USER 'transmiwikiuser'@'localhost' IDENTIFIED BY 'password';
 
 CREATE DATABASE transmiwikidb;
 
@@ -59,7 +59,7 @@ gcloud container clusters get-credentials transmipedia-cluster
 
 gcloud compute disks create --size 200GB transmipedia-disk
 
-kubectl create secret generic mysql --from-literal=password=1q2w3e4r5t6y7u8i9o
+kubectl create secret generic mysql --from-literal=password=password
 
 docker pull wikibase/wikibase
 
@@ -107,8 +107,8 @@ docker run --env-file ./env.list --rm -p 8080:8080 wikibase/wikibase
 #
 # tag wikibase/wikibase gcr.io/${PROJECT_ID}/wikibase
 # kubectl run wiki-web --image=gcr.io/${PROJECT_ID}/wikibase:v1 --port 8080
-# docker run --rm -p 8080:8080 -e MW_ADMIN_NAME="admin" -e MW_ADMIN_PASS="password" -e MW_WG_SECRET_KEY="psecretkey" -e DB_SERVER="35.193.128.232:3306" -e DB_USER="wikiuser" -e DB_PASS="1q2w3e4r5t6y7u8i9o" -e DB_NAME="my_wiki" gcr.io/${PROJECT_ID}/wikibase
-# kubectl run wiki-web --image=gcr.io/${PROJECT_ID}/wikibase --port 8080 --env="MW_ADMIN_NAME=admin" --env="MW_ADMIN_PASS=password" --env="MW_WG_SECRET_KEY=psecretkey" --env="DB_SERVER=35.193.128.232:3306" --env="DB_USER=wikiuser" --env="DB_PASS=1q2w3e4r5t6y7u8i9o" --env="DB_NAME=my_wiki"
+# docker run --rm -p 8080:8080 -e MW_ADMIN_NAME="admin" -e MW_ADMIN_PASS="password" -e MW_WG_SECRET_KEY="psecretkey" -e DB_SERVER="35.193.128.232:3306" -e DB_USER="wikiuser" -e DB_PASS="password" -e DB_NAME="my_wiki" gcr.io/${PROJECT_ID}/wikibase
+# kubectl run wiki-web --image=gcr.io/${PROJECT_ID}/wikibase --port 8080 --env="MW_ADMIN_NAME=admin" --env="MW_ADMIN_PASS=password" --env="MW_WG_SECRET_KEY=psecretkey" --env="DB_SERVER=35.193.128.232:3306" --env="DB_USER=wikiuser" --env="DB_PASS=password" --env="DB_NAME=my_wiki"
 # kubectl expose deployment wiki-web --type=LoadBalancer --port 80 --target-port 8080
 version: '2'
 
@@ -121,7 +121,7 @@ docker build -t gcr.io/${PROJECT_ID}/transmipedia .
 docker images
 gcloud docker -- push gcr.io/${PROJECT_ID}/
 docker run --rm -p 8080:8080 gcr.io/${PROJECT_ID}/transmipedia
-docker run --rm -p 8080:8080 -e MW_ADMIN_NAME="admin" -e MW_ADMIN_PASS="password" -e MW_WG_SECRET_KEY="psecretkey" -e DB_SERVER="35.193.128.232:3306" -e DB_USER="wikiuser" -e DB_PASS="1q2w3e4r5t6y7u8i9o" -e DB_NAME="my_wiki" gcr.io/${PROJECT_ID}/transmipedia
+docker run --rm -p 8080:8080 -e MW_ADMIN_NAME="admin" -e MW_ADMIN_PASS="password" -e MW_WG_SECRET_KEY="psecretkey" -e DB_SERVER="35.193.128.232:3306" -e DB_USER="wikiuser" -e DB_PASS="password" -e DB_NAME="my_wiki" gcr.io/${PROJECT_ID}/transmipedia
 
 
 test2
