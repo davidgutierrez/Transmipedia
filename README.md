@@ -38,6 +38,13 @@ sudo systemctl restart apache2.service
  
 https://35.196.10.6/mediawiki
 
+git clone https://github.com/davidgutierrez/Transmipedia.git
+
+sudo mv Transmipedia/LocalSettings.php /var/lib/mediawiki/
+
+sudo mv TransMilenio.png /var/www/html/mediawiki/resources/assets/
+
+
 ########################
 Enable Kubernete
  https://console.cloud.google.com/apis/api/container.googleapis.com/overview?project=wikipedia-208621 
