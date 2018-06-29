@@ -1,4 +1,44 @@
 
+sudo apt-get update
+sudo apt-get install apache2 mysql-server php php-mysql libapache2-mod-php php-xml php-mbstring
+
+sudo apt-get install php-apcu php-intl imagemagick inkscape php-gd php-cli php-curl git
+
+cd /tmp/
+
+wget https://releases.wikimedia.org/mediawiki/1.31/mediawiki-1.31.0.tar.gz
+
+tar -xvzf /tmp/mediawiki-*.tar.gz
+
+sudo mkdir /var/lib/mediawiki
+
+sudo mv mediawiki-*/* /var/lib/mediawiki
+
+mysql -u root -p
+
+CREATE USER 'transmiwikiuser'@'localhost' IDENTIFIED BY 'Tr4nsm1w1k1p4ss';
+
+CREATE DATABASE transmiwikidb;
+
+use transmiwikidb;
+
+GRANT ALL ON transmiwikidb.* TO transmiwikiuser@localhost;
+
+quit;
+
+#Para configurar el php
+sudo vi /etc/php/7.0/apache2/php.ini
+
+memory_limit = 128M #aumentar memoria
+upload_max_filesize = 20M #aumentar el tamaño de los archivos que se pueden subir
+
+sudo phpenmod mbstring
+sudo phpenmod xml
+sudo systemctl restart apache2.service
+ 
+https://35.196.10.6/mediawiki
+
+########################
 Enable Kubernete
  https://console.cloud.google.com/apis/api/container.googleapis.com/overview?project=wikipedia-208621 
 
