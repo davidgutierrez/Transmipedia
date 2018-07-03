@@ -1,7 +1,7 @@
 
 sudo apt-get update
 sudo apt-get install apache2 mysql-server php php-mysql libapache2-mod-php php-xml php-mbstring
-
+#password
 sudo apt-get install php-apcu php-intl imagemagick inkscape php-gd php-cli php-curl git
 
 cd /tmp/
@@ -29,13 +29,14 @@ quit;
 #Para configurar el php
 sudo vi /etc/php/7.0/apache2/php.ini
 
-memory_limit = 128M #aumentar memoria
-upload_max_filesize = 20M #aumentar el tamaño de los archivos que se pueden subir
+memory_limit = 128M #aumentar memoria linea 389
+upload_max_filesize = 20M #aumentar el tamaño de los archivos que se pueden subir linea 809
 
 sudo phpenmod mbstring
 sudo phpenmod xml
 sudo systemctl restart apache2.service
- 
+
+sudo ln -s /var/lib/mediawiki /var/www/html/mediawiki
 https://35.196.10.6/mediawiki
 
 git clone https://github.com/davidgutierrez/Transmipedia.git
