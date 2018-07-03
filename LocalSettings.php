@@ -19,7 +19,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 ## Uncomment this to disable output compression
 # $wgDisableOutputCompression = true;
 
-$wgSitename = "Transmipedia";
+$wgSitename = "Transmiwiki";
 
 ## The URL base path to the directory containing the wiki;
 ## defaults for all runtime URL paths are based off of this.
@@ -29,21 +29,22 @@ $wgSitename = "Transmipedia";
 $wgScriptPath = "/mediawiki";
 
 ## The protocol and server name to use in fully-qualified URLs
-$wgServer = "http://104.196.160.193";
+$wgServer = "http://35.237.209.65";
 
 ## The URL path to static resources (images, scripts, etc.)
 $wgResourceBasePath = $wgScriptPath;
 
 ## The URL path to the logo.  Make sure you change this from the default,
 ## or else you'll overwrite your logo when you upgrade!
-$wgLogo = $wgScriptPath . "/resources/assets/TransMilenio.png";
+$wgLogo = "$wgResourceBasePath/resources/assets/TransMilenio.png";
+
 ## UPO means: this is also a user preference option
 
 $wgEnableEmail = false;
 $wgEnableUserEmail = true; # UPO
 
-$wgEmergencyContact = "apache@104.196.160.193";
-$wgPasswordSender = "apache@104.196.160.193";
+$wgEmergencyContact = "apache@35.237.209.65";
+$wgPasswordSender = "apache@35.237.209.65";
 
 $wgEnotifUserTalk = false; # UPO
 $wgEnotifWatchlist = false; # UPO
@@ -51,10 +52,10 @@ $wgEmailAuthentication = true;
 
 ## Database settings
 $wgDBtype = "mysql";
-$wgDBserver = "35.232.241.173";
-$wgDBname = "wikibase";
+$wgDBserver = "localhost";
+$wgDBname = "transmiwikidb";
 $wgDBuser = "root";
-$wgDBpassword = "1q2w3e4r5t6y7u8i9o0p";
+$wgDBpassword = "password";
 
 # MySQL specific settings
 $wgDBprefix = "";
@@ -73,7 +74,7 @@ $wgUseImageMagick = true;
 $wgImageMagickConvertCommand = "/usr/bin/convert";
 
 # InstantCommons allows wiki to use images from https://commons.wikimedia.org
-$wgUseInstantCommons = false;
+$wgUseInstantCommons = true;
 
 # Periodically send a pingback to https://www.mediawiki.org/ with basic data
 # about this MediaWiki instance. The Wikimedia Foundation shares this data
@@ -93,14 +94,14 @@ $wgShellLocale = "C.UTF-8";
 # Site language code, should be one of the list in ./languages/data/Names.php
 $wgLanguageCode = "es";
 
-$wgSecretKey = "36fefdf580fcae7382eea68fd97970db7e721276f3389ed713902addb7043489";
+$wgSecretKey = "d5fd20a07ceb69ffe0131918467e0b3ab8e7ac6c405fc23ea6044bcb20a5437c";
 
 # Changing this will log out all existing sessions.
 $wgAuthenticationTokenVersion = "1";
 
 # Site upgrade key. Must be set to a string (default provided) to turn on the
 # web installer while LocalSettings.php is in place
-$wgUpgradeKey = "4d1f2535dbe3884b";
+$wgUpgradeKey = "9784ba2d77e32332";
 
 ## For attaching licensing metadata to pages, and displaying an
 ## appropriate copyright notice / icon. GNU Free Documentation
@@ -128,32 +129,28 @@ wfLoadSkin( 'Timeless' );
 wfLoadSkin( 'Vector' );
 
 
-## Wikibase
-# Load Wikibase repo, client & lib with the example / default settings.
-require_once "$IP/extensions/Wikibase/vendor/autoload.php";
-require_once "$IP/extensions/Wikibase/lib/WikibaseLib.php";
-require_once "$IP/extensions/Wikibase/repo/Wikibase.php";
-require_once "$IP/extensions/Wikibase/repo/ExampleSettings.php";
-require_once "$IP/extensions/Wikibase/client/WikibaseClient.php";
-require_once "$IP/extensions/Wikibase/client/ExampleSettings.php";
-
 # Enabled extensions. Most of the extensions are enabled by adding
 # wfLoadExtensions('ExtensionName');
 # to LocalSettings.php. Check specific extension documentation for more details.
 # The following extensions were automatically enabled:
-wfLoadExtension( 'CategoryTree' );
 wfLoadExtension( 'Cite' );
 wfLoadExtension( 'CiteThisPage' );
 wfLoadExtension( 'CodeEditor' );
-wfLoadExtension( 'ConfirmEdit' );
 wfLoadExtension( 'ImageMap' );
 wfLoadExtension( 'InputBox' );
 wfLoadExtension( 'LocalisationUpdate' );
 wfLoadExtension( 'MultimediaViewer' );
 wfLoadExtension( 'ParserFunctions' );
 wfLoadExtension( 'PdfHandler' );
+wfLoadExtension( 'Renameuser' );
 wfLoadExtension( 'ReplaceText' );
+wfLoadExtension( 'SpamBlacklist' );
+wfLoadExtension( 'SyntaxHighlight_GeSHi' );
 wfLoadExtension( 'WikiEditor' );
+
+
+# End of automatically generated settings.
+# Add more configuration options below.
 
 wfLoadExtension( 'Scribunto' );
 $wgScribuntoDefaultEngine = 'luastandalone';
