@@ -45,6 +45,8 @@ sudo mv Transmipedia/LocalSettings.php /var/lib/mediawiki/
 
 sudo mv TransMilenio.png /var/www/html/mediawiki/resources/assets/
 
+wget https://extdist.wmflabs.org/dist/extensions/Scribunto-REL1_31-106fbf4.tar.gz
+tar -xzf Scribunto-REL1_31-106fbf4.tar.gz -C /var/www/html/mediawiki/extensions/
 
 ########################
 Enable Kubernete
