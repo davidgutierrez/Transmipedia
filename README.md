@@ -48,6 +48,18 @@ sudo mv TransMilenio.png /var/www/html/mediawiki/resources/assets/
 wget https://extdist.wmflabs.org/dist/extensions/Scribunto-REL1_31-106fbf4.tar.gz
 tar -xzf Scribunto-REL1_31-106fbf4.tar.gz -C /var/www/html/mediawiki/extensions/
 
+wget https://getcomposer.org/composer.phar
+
+sudo mv composer.phar /usr/local/bin/composer
+
+cd /var/www/html/mediawiki/extensions/
+
+git clone https://gerrit.wikimedia.org/r/mediawiki/extensions/Wikibase.git
+
+cd Wikibase
+
+git submodule update --init --recursive # get the dependencies using submodules
+
 ########################
 Enable Kubernete
  https://console.cloud.google.com/apis/api/container.googleapis.com/overview?project=wikipedia-208621 
