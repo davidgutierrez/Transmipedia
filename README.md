@@ -1,8 +1,6 @@
 
 sudo apt-get update
-sudo apt-get install apache2 mysql-server php php-mysql libapache2-mod-php php-xml php-mbstring
-#password
-sudo apt-get install php-apcu php-intl imagemagick inkscape php-gd php-cli php-curl git
+sudo apt-get install apache2 mysql-server php php-mysql libapache2-mod-php php-xml php-mbstring php-apcu php-intl imagemagick inkscape php-gd php-cli php-curl git
 
 cd /tmp/
 
@@ -43,7 +41,7 @@ git clone https://github.com/davidgutierrez/Transmipedia.git
 
 sudo mv Transmipedia/LocalSettings.php /var/lib/mediawiki/
 
-sudo mv TransMilenio.png /var/www/html/mediawiki/resources/assets/
+sudo mv Transmipedia/TransMilenio.png /var/www/html/mediawiki/resources/assets/
 
 wget https://extdist.wmflabs.org/dist/extensions/Scribunto-REL1_31-106fbf4.tar.gz
 tar -xzf Scribunto-REL1_31-106fbf4.tar.gz -C /var/www/html/mediawiki/extensions/
@@ -51,6 +49,8 @@ tar -xzf Scribunto-REL1_31-106fbf4.tar.gz -C /var/www/html/mediawiki/extensions/
 wget https://getcomposer.org/composer.phar
 
 sudo mv composer.phar /usr/local/bin/composer
+
+sudo chmod 755 /usr/local/bin/composer 
 
 cd /var/www/html/mediawiki/extensions/
 
@@ -60,6 +60,36 @@ cd Wikibase
 
 git submodule update --init --recursive # get the dependencies using submodules
 
+cd /var/www/html/mediawiki
+
+composer install --no-dev
+
+php maintenance/update.php
+
+cd extensions/Wikibase
+
+php lib/maintenance/populateSitesTable.php
+
+php repo/maintenance/rebuildItemsPerSite.php
+
+php client/maintenance/populateInterwiki.php
+
+# Si no pregunta por password
+
+sudo service mysql stop
+
+sudo mkdir /var/run/mysqld; sudo chown mysql /var/run/mysqld
+
+sudo mysqld_safe --skip-grant-tables&
+
+sudo mysql --user=root mysql
+
+update user set authentication_string=PASSWORD('new-password') where user='root';
+flush privileges;
+
+exit;
+
+sudo service mysql start
 ########################
 Enable Kubernete
  https://console.cloud.google.com/apis/api/container.googleapis.com/overview?project=wikipedia-208621 
