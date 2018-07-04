@@ -24,17 +24,21 @@ GRANT ALL ON transmiwikidb.* TO transmiwikiuser@localhost;
 
 quit;
 
-#Para configurar el php
+# Para configurar el php
 sudo vi /etc/php/7.0/apache2/php.ini
 
 memory_limit = 128M #aumentar memoria linea 389
+
 upload_max_filesize = 20M #aumentar el tamaño de los archivos que se pueden subir linea 809
 
 sudo phpenmod mbstring
+
 sudo phpenmod xml
+
 sudo systemctl restart apache2.service
 
 sudo ln -s /var/lib/mediawiki /var/www/html/mediawiki
+
 https://35.196.10.6/mediawiki
 
 git clone https://github.com/davidgutierrez/Transmipedia.git
