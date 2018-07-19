@@ -1,5 +1,6 @@
 
 sudo apt-get update
+
 sudo apt-get install apache2 mysql-server php php-mysql libapache2-mod-php php-xml php-mbstring php-apcu php-intl imagemagick inkscape php-gd php-cli php-curl git
 
 cd /tmp/
@@ -12,7 +13,7 @@ sudo mkdir /var/lib/mediawiki
 
 sudo mv mediawiki-*/* /var/lib/mediawiki
 
-mysql -u root -p
+sudo mysql -u root -p
 
 CREATE USER 'transmiwikiuser'@'localhost' IDENTIFIED BY 'password';
 
