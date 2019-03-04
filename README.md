@@ -192,3 +192,8 @@ docker exec docker_mediawiki_1 rm ./bitnami/mediawiki/LocalSettings.php
 
 
 Cannot nest 'ETLValidaciones.test/src/main/java' inside 'ETLValidacione
+
+
+## cambiar texto archivos
+
+find . -type f | xargs perl -pi -e 's/definiciónes/definiciones/g;'
